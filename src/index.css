@@ -1,8 +1,19 @@
+.main {
+  margin: auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 .sportItem {
-  padding: 10px;
-  margin-bottom: 8px;
+  margin: 20px;
+  padding: 20px;
   background-color: white;
   border: 1px solid lightgrey;
-  border-radius: 2px;
+  border-radius: 10px;
 }
 
