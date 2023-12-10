@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContentRepository } from '../lib/ContentRepository';
 import {
@@ -13,19 +13,29 @@ export const SportsList = () => {
 	const sports = useSelector(selectSports);
 	const loading = useSelector(selectLoading);
 
-	const fetchSports = async () => {
+	const fetchSports = useCallback(async () => {
 		dispatch(setLoading(true));
-		const content = new ContentRepository();
-		const fetchedSports = await content.getFeaturedSports();
-		dispatch(
-			setSports(fetchedSports.sort(() => 0.5 - Math.random()).slice(0, 3))
-		);
-		dispatch(setLoading(false));
-	};
+		try {
+			const repository = new ContentRepository();
+			const fetchedSports = await repository.getFeaturedSports();
+			const selectedSports = fetchedSports
+				.sort(() => 0.5 - Math.random())
+				.slice(0, 3)
+				.map((sport) => ({
+					name: sport.name,
+					description: sport.description,
+				}));
+			dispatch(setSports(selectedSports));
+		} catch (error) {
+			console.error('Error fetching sports list:', error);
+		} finally {
+			dispatch(setLoading(false));
+		}
+	}, [dispatch]);
 
 	useEffect(() => {
 		fetchSports();
-	}, [dispatch]);
+	}, [fetchSports]);
 
 	if (loading) return <div>Loading...</div>;
 
