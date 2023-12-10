@@ -1,19 +1,83 @@
+body {
+  background-color: #e8e8e8;
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
 .main {
-  margin: auto;
-  padding: 20px;
   min-height: 100vh;
   display: flex;
-  width: 70%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
 }
+
+.list-container {
+  margin: auto;
+  max-width: 500px;
+  min-width: 300px;
+  gap: 10px;
+  background: #e1e1e1;
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  border-radius: 30px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
 .sportItem {
+  color: #1f1f47;
   margin: 20px;
   padding: 20px;
-  background-color: white;
-  border: 1px solid lightgrey;
+
+  background: rgba( 255, 255, 255, 0.05 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 16.5px );
+  -webkit-backdrop-filter: blur( 16.5px );
+  border-radius: 30px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+}
+
+.sportItem:hover {
+  background: rgba(255, 255, 255, 0.533);
+  color: #1f1f47;
+  transform: scale(1.02);
+}
+
+.button {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 20px;
+  margin: 20px;
+  background-color: rgb(33, 38, 102);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 20px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background: #1f1f479b;
+  transform: scale(1.05);
+}
+
+.instructions {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: #1f1f47;
+  padding: 15px;
   border-radius: 10px;
+}
+
+@media (max-width: 1000px) {
+  .instructions {
+    display: none;
+  }
 }
 

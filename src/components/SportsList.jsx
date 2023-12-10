@@ -78,7 +78,9 @@ export const SportsList = () => {
 					</div>
 				)}
 			</Droppable>
-			<button onClick={fetchSports}>Refresh List</button>
+			<button onClick={fetchSports} className="button">
+				Refresh List
+			</button>
 		</DragDropContext>
 	);
 };

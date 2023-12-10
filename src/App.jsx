@@ -4,8 +4,13 @@ function App() {
 	return (
 		<div className="App">
 			<div className="main">
-				<h1>Sports Library</h1>
-				<SportsList />
+				<div className="list-container">
+					<h1>Sports Library</h1>
+					<SportsList />
+				</div>
+			</div>
+			<div className="instructions">
+				<p>drag cards to change order</p>
 			</div>
 		</div>
 	);
