@@ -2,27 +2,12 @@ import { useEffect, useCallback, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { ContentRepository } from '../lib/ContentRepository';
-import {
-	setSports,
-	setLoading,
-	selectSports,
-	selectLoading,
-} from '../slices/sportsSlice';
+import { setSports, setLoading, selectLoading } from '../slices/sportsSlice';
 
 export const SportsList = () => {
 	const dispatch = useDispatch();
-	const sports = useSelector(selectSports);
 	const loading = useSelector(selectLoading);
 	const [sportsList, setSportsList] = useState([]);
-
-	useEffect(() => {
-		const savedList = localStorage.getItem('savedList');
-		if (savedList) {
-			setSportsList(JSON.parse(savedList));
-		} else {
-			fetchSports();
-		}
-	}, []);
 
 	const fetchSports = useCallback(async () => {
 		dispatch(setLoading(true));
@@ -48,11 +33,21 @@ export const SportsList = () => {
 		}
 	}, [dispatch]);
 
+	useEffect(() => {
+		const savedList = localStorage.getItem('savedList');
+		if (savedList) {
+			setSportsList(JSON.parse(savedList));
+		} else {
+			fetchSports();
+		}
+	}, [fetchSports]);
+
 	const onDragEnd = (result) => {
 		if (!result.destination) return;
+
 		const list = Array.from(sportsList);
-		const shuffledList = list.splice(result.source.index, 1)[0];
-		list.splice(result.destination.index, 0, shuffledList);
+		const [reorderedItem] = list.splice(result.source.index, 1);
+		list.splice(result.destination.index, 0, reorderedItem);
 
 		setSportsList(list);
 		localStorage.setItem('savedList', JSON.stringify(list));
