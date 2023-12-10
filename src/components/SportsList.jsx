@@ -47,7 +47,8 @@ export const SportsList = () => {
 					<p>{sport.description}</p>
 				</div>
 			))}
-			<button onClick={fetchSports}>Refresh Sports</button>
+			<button onClick={fetchSports}>Refresh List</button>
+      
 		</div>
 	);
 };
