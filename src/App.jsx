@@ -11,7 +11,7 @@ function App() {
 			</div>
 			<div className="instructions">
 				<p>drag cards to change order</p>
-				<img src="public/arrow.png" alt="arrow"></img>
+				<img src="/arrow.png" alt="arrow"></img>
 			</div>
 		</div>
 	);
