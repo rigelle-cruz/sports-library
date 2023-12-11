@@ -53,7 +53,12 @@ export const SportsList = () => {
 		localStorage.setItem('savedList', JSON.stringify(list));
 	};
 
-	if (loading) return <div>Loading...</div>;
+	if (loading)
+		return (
+			<div className="loading-container">
+				<div className="spinner"></div>
+			</div>
+		);
 
 	return (
 		<DragDropContext onDragEnd={onDragEnd}>
